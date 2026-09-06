@@ -1,0 +1,20 @@
+# YAML example for playing Mario Kart 8 Deluxe (Manual) in Archipelago
+# Place this file in the 'Players/' folder before generating the seed.
+
+description: 'Mario Kart 8 Deluxe - 96 Tracks Manual'
+
+name: MK8DPlayer
+
+game: Manual_Mario Kart 8 Deluxe_ManualMK8D
+
+Manual_Mario Kart 8 Deluxe_ManualMK8D:
+  progression_balancing: normal
+  accessibility: full
+
+# General Archipelago options
+Archipelago:
+  password:
+  hint_cost: 10
+  release_mode: auto-enabled
+  collect_mode: auto-enabled
+  item_cheat: false

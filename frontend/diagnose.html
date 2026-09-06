@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head><title>AP Diagnose</title></head>
+<body>
+<h2>Diagnóstico Archipelago</h2>
+<div>
+  Host: <input id="host" value="localhost" /> 
+  Porta: <input id="port" value="38281" /> 
+  Slot: <input id="slot" value="MK8DPlayer" />
+  <button onclick="connect()">Conectar</button>
+  <button onclick="clearLog()">Limpar</button>
+</div>
+<pre id="log" style="background:#111;color:#0f0;padding:10px;height:400px;overflow:auto;font-family:monospace;"></pre>
+
+<script>
+function log(msg) {
+    const el = document.getElementById('log');
+    el.textContent += '[' + new Date().toLocaleTimeString() + '] ' + msg + '\n';
+    el.scrollTop = el.scrollHeight;
+}
+function clearLog() { document.getElementById('log').textContent = ''; }
+
+let ws;
+function connect() {
+    const host = document.getElementById('host').value;
+    const port = document.getElementById('port').value;
+    const slot = document.getElementById('slot').value;
+    const url = `ws://${host}:${port}`;
+    log('A ligar a ' + url);
+    ws = new WebSocket(url);
+    
+    ws.onopen = () => log('WebSocket OPEN');
+    ws.onclose = (e) => log('WebSocket CLOSE code=' + e.code + ' reason=' + e.reason);
+    ws.onerror = (e) => log('WebSocket ERROR');
+    ws.onmessage = (ev) => {
+        const packets = JSON.parse(ev.data);
+        log('RECV ' + packets.length + ' pacote(s):');
+        for (const p of packets) {
+            log('  -> ' + p.cmd + ': ' + JSON.stringify(p).slice(0, 300));
+            if (p.cmd === 'RoomInfo') {
+                log('Enviando GetDataPackage + Connect...');
+                ws.send(JSON.stringify([
+                    { cmd: 'GetDataPackage', games: ['Manual_Mario Kart 8 Deluxe_ManualMK8D'] },
+                    {
+                        cmd: 'Connect',
+                        password: '',
+                        game: 'Manual_Mario Kart 8 Deluxe_ManualMK8D',
+                        name: slot,
+                        uuid: 'test-uuid-123',
+                        version: { major: 0, minor: 6, build: 7, class: 'Version' },
+                        items_handling: 7,
+                        tags: [],
+                        slot_data: true
+                    }
+                ]));
+            }
+        }
+    };
+}
+</script>
+</body>
+</html>
