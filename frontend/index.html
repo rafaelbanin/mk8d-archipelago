@@ -292,8 +292,15 @@
         ];
 
         const TOTAL_TRACKS = 96;
-        const GOAL_ID = 97;
         const GOAL_THRESHOLD = 77;
+        // Nome exato da location de vitória no .apworld (data/locations.json).
+        const GOAL_LOCATION_NAME = "Goal: Complete 80% of Tracks";
+
+        // IDs reais das locations vêm do DataPackage (location_name_to_id),
+        // NÃO da posição no array TRACKS — a ordem no .apworld é diferente.
+        function trackLocId(index) { return locationNameToId[TRACKS[index - 1]]; }
+        function goalLocId() { return locationNameToId[GOAL_LOCATION_NAME]; }
+        function isGoalDone() { const id = goalLocId(); return id != null && checkedLocations.has(id); }
 
         // === Estado ===
         let ws = null;
@@ -375,7 +382,7 @@
                         uuid: localStorage.getItem('ap_uuid') || crypto.randomUUID(),
                         version: { major: 0, minor: 6, build: 0, class: 'Version' },
                         items_handling: 0b111,
-                        tags: ['TextOnly'],
+                        tags: [],
                         slot_data: true
                     });
                     break;
@@ -437,7 +444,7 @@
             return count;
         }
 
-        function isDone(index) { return checkedLocations.has(index); }
+        function isDone(index) { const id = trackLocId(index); return id != null && checkedLocations.has(id); }
 
         function ownedUnlockCount() {
             let count = 0;
@@ -459,7 +466,7 @@
             return ownedUnlockCount() >= req;
         }
 
-        function isGoalAvailable() { return completedTracksCount() >= GOAL_THRESHOLD && !isDone(GOAL_ID); }
+        function isGoalAvailable() { return completedTracksCount() >= GOAL_THRESHOLD && !isGoalDone(); }
 
         function render() {
             const done = completedTracksCount();
@@ -523,7 +530,7 @@
                 elTracks.appendChild(div);
             }
 
-            const goalDone = isDone(GOAL_ID);
+            const goalDone = isGoalDone();
             const goalAvailable = isGoalAvailable();
             if (currentFilter === 'all' || (currentFilter === 'available' && goalAvailable) || (currentFilter === 'done' && goalDone)) {
                 const div = document.createElement('div');
@@ -547,23 +554,35 @@
 
         function checkLocation(index) {
             if (!connected) { log('Não estás conectado.', 'error'); return; }
-            send('LocationChecks', { locations: [index] });
-            checkedLocations.add(index);
-            log(index === GOAL_ID ? 'Goal concluído!' : `Pista #${index} ${TRACKS[index-1]} concluída.`);
+            const id = trackLocId(index);
+            if (id == null) { log(`ID da location não encontrado para "${TRACKS[index-1]}" (DataPackage em falta?).`, 'error'); return; }
+            send('LocationChecks', { locations: [id] });
+            checkedLocations.add(id);
+            log(`Pista #${index} ${TRACKS[index-1]} concluída.`);
             render();
         }
 
         function completeGoal() {
             if (!connected) { log('Não estás conectado.', 'error'); return; }
-            const remaining = [];
-            for (let i = 1; i <= TOTAL_TRACKS; i++) {
-                if (!isDone(i)) remaining.push(i);
+            if (completedTracksCount() < GOAL_THRESHOLD) {
+                log(`Precisas de ${GOAL_THRESHOLD} pistas para o goal.`, 'error');
+                return;
             }
-            if (!isDone(GOAL_ID)) remaining.push(GOAL_ID);
-            if (remaining.length === 0) return;
-            send('LocationChecks', { locations: remaining });
-            for (const id of remaining) checkedLocations.add(id);
-            log(`🏆 GOAL! ${remaining.length - 1} pistas restantes e o goal foram completados. Todos os itens serão enviados.`, 'success');
+            // Check todas as pistas restantes + a location de vitória (IDs reais).
+            const ids = [];
+            for (let i = 1; i <= TOTAL_TRACKS; i++) {
+                if (!isDone(i)) { const id = trackLocId(i); if (id != null) ids.push(id); }
+            }
+            const gid = goalLocId();
+            if (gid != null && !checkedLocations.has(gid)) ids.push(gid);
+            if (ids.length) {
+                send('LocationChecks', { locations: ids });
+                for (const id of ids) checkedLocations.add(id);
+            }
+            // Marca o slot como goal-complete no servidor (ClientStatus.CLIENT_GOAL = 30).
+            // Sem isto o servidor não considera o jogo terminado nem faz o release automático.
+            send('StatusUpdate', { status: 30 });
+            log(`🏆 GOAL! ${ids.length ? ids.length - (gid != null ? 1 : 0) : 0} pistas restantes e o goal foram completados. Todos os itens serão libertados.`, 'success');
             render();
         }
 
