@@ -59,7 +59,7 @@ If you want to rebuild it, use the **ManualBuilder**: https://manualforarchipela
 4. The **4 random initial tracks** appear as **Available**.
 5. Play any available track in MK8D, return to the frontend and click **Complete**.
 6. A random `Track Unlock` item is sent immediately, and any track whose unlock requirement is now met becomes available.
-7. Once **77 tracks** are completed, click **Completar Goal** to finish the game and release all remaining items.
+7. Once **77 tracks** are completed, click **Complete Goal** to finish the game and release all remaining items.
 
 ## Images
 

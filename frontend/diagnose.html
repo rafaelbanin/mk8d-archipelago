@@ -2,13 +2,13 @@
 <html>
 <head><title>AP Diagnose</title></head>
 <body>
-<h2>Diagnóstico Archipelago</h2>
+<h2>Archipelago Diagnostics</h2>
 <div>
   Host: <input id="host" value="localhost" /> 
-  Porta: <input id="port" value="38281" /> 
+  Port: <input id="port" value="38281" /> 
   Slot: <input id="slot" value="MK8DPlayer" />
-  <button onclick="connect()">Conectar</button>
-  <button onclick="clearLog()">Limpar</button>
+  <button onclick="connect()">Connect</button>
+  <button onclick="clearLog()">Clear</button>
 </div>
 <pre id="log" style="background:#111;color:#0f0;padding:10px;height:400px;overflow:auto;font-family:monospace;"></pre>
 
@@ -26,7 +26,7 @@ function connect() {
     const port = document.getElementById('port').value;
     const slot = document.getElementById('slot').value;
     const url = `ws://${host}:${port}`;
-    log('A ligar a ' + url);
+    log('Connecting to ' + url);
     ws = new WebSocket(url);
     
     ws.onopen = () => log('WebSocket OPEN');
@@ -34,11 +34,11 @@ function connect() {
     ws.onerror = (e) => log('WebSocket ERROR');
     ws.onmessage = (ev) => {
         const packets = JSON.parse(ev.data);
-        log('RECV ' + packets.length + ' pacote(s):');
+        log('RECV ' + packets.length + ' packet(s):');
         for (const p of packets) {
             log('  -> ' + p.cmd + ': ' + JSON.stringify(p).slice(0, 300));
             if (p.cmd === 'RoomInfo') {
-                log('Enviando GetDataPackage + Connect...');
+                log('Sending GetDataPackage + Connect...');
                 ws.send(JSON.stringify([
                     { cmd: 'GetDataPackage', games: ['Manual_Mario Kart 8 Deluxe_ManualMK8D'] },
                     {

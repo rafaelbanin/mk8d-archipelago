@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,17 +62,74 @@
         .stat b { display: block; font-size: 1.4rem; color: var(--accent); }
         .stat span { font-size: .75rem; color: var(--muted); }
 
-        .track {
-            display: flex; align-items: center; justify-content: space-between; min-height: 84px;
-            padding: .6rem .8rem; margin-bottom: .4rem; border-radius: 6px;
-            background: var(--bg); border-left: 4px solid var(--locked);
+        /* Track grid */
+        #tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: .7rem;
         }
-        .track.available { border-color: var(--available); }
-        .track.done { border-color: var(--done); opacity: .75; }
-        .track.goal { background: linear-gradient(90deg, var(--panel) 0%, rgba(233,69,96,0.15) 100%); border-left-width: 6px; }
-        .track b { font-weight: 600; }
-        .track small { color: var(--muted); font-size: .75rem; }
-        .track button { margin: 0; padding: .35rem .7rem; font-size: .8rem; }
+
+        /* Tile: the whole image is the button */
+        .tile {
+            position: relative; display: block;
+            padding: 0; margin: 0;              /* reset of base button (padding .6rem 1rem, margin-top .8rem) */
+            border: 3px solid transparent; border-radius: 10px;
+            overflow: hidden; cursor: pointer;
+            background: var(--bg);
+            transition: filter .15s ease;
+        }
+        .tile img {
+            display: block; width: 100%;
+            aspect-ratio: 16 / 9; object-fit: cover;
+        }
+        /* Name caption inside the image */
+        .tile .name {
+            position: absolute; left: 0; right: 0; bottom: 0;
+            padding: 1rem .35rem .3rem;
+            font-size: .72rem; font-weight: 600; line-height: 1.1;
+            text-align: center; color: #fff;
+            background: linear-gradient(transparent, rgba(0,0,0,.85));
+            pointer-events: none;
+        }
+        /* ✓/✕ symbol in the corner */
+        .tile .badge {
+            position: absolute; top: 5px; right: 5px;
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: .95rem; font-weight: 700; color: #fff;
+            pointer-events: none;
+        }
+
+        /* States */
+        .tile.available { border-color: var(--available); }
+        .tile.done      { border-color: var(--done); }
+        .tile.done .badge { background: var(--done); }
+        .tile.locked    { border-color: var(--locked); cursor: not-allowed; }
+        .tile.locked img  { filter: brightness(.45); }        /* dimmer brightness */
+        .tile.locked .badge { background: rgba(0,0,0,.75); }
+
+        /* Hover only on clickable tiles; done stays slightly dimmed */
+        .tile:not(:disabled):hover img { filter: brightness(1.15); }
+        .tile.done img { filter: brightness(.85); }
+        .tile.done:not(:disabled):hover img { filter: brightness(1); }
+
+        /* the base button's disabled state must not paint the background gray */
+        .tile:disabled { background: var(--bg); }
+
+        /* GOAL card: keeps the row layout, spanning the full grid width */
+        .goal-card {
+            grid-column: 1 / -1;
+            display: flex; align-items: center; justify-content: space-between;
+            min-height: 60px; padding: .6rem .8rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--locked);
+            background: linear-gradient(90deg, var(--bg) 0%, rgba(233,69,96,0.15) 100%);
+        }
+        .goal-card.available { border-color: var(--available); }
+        .goal-card.done { border-color: var(--done); opacity: .75; }
+        .goal-card b { font-weight: 600; }
+        .goal-card small { color: var(--muted); font-size: .75rem; }
+        .goal-card button { margin: 0; padding: .35rem .7rem; font-size: .8rem; }
 
         .inventory {
             display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem;
@@ -103,34 +160,34 @@
 <body>
     <header>
         <h1>🏁 Mario Kart 8 Deluxe — Archipelago Manual</h1>
-        <p>96 pistas. 4 iniciais aleatórias. Cada vitória dá um item aleatório. Goal em 77 pistas.</p>
+        <p>96 tracks. 4 random starters. Each win grants a random item. Goal at 77 tracks.</p>
     </header>
 
     <div class="container">
         <div class="grid">
             <aside>
                 <div class="panel">
-                    <h3>Conectar ao Servidor</h3>
+                    <h3>Connect to Server</h3>
                     <label>Host / IP
                         <input id="host" value="localhost" />
                     </label>
-                    <label>Porta
+                    <label>Port
                         <input id="port" type="number" value="38281" />
                     </label>
-                    <label>Nome do Slot
+                    <label>Slot Name
                         <input id="slot" placeholder="MK8DPlayer" />
                     </label>
-                    <label>Password (se houver)
+                    <label>Password (if any)
                         <input id="password" type="password" />
                     </label>
-                    <button id="btnConnect">Conectar</button>
-                    <button id="btnDisconnect" disabled>Desconectar</button>
-                    <div id="status" class="status disconnected">Desconectado</div>
+                    <button id="btnConnect">Connect</button>
+                    <button id="btnDisconnect" disabled>Disconnect</button>
+                    <div id="status" class="status disconnected">Disconnected</div>
                 </div>
 
                 <div class="panel">
-                    <h3>Inventário</h3>
-                    <div id="inventory" class="inventory"><span class="item">Nenhum item ainda</span></div>
+                    <h3>Inventory</h3>
+                    <div id="inventory" class="inventory"><span class="item">No items yet</span></div>
                 </div>
 
                 <div class="panel">
@@ -141,20 +198,20 @@
 
             <main>
                 <div class="stats">
-                    <div class="stat"><b id="statTotal">96</b><span>Total Pistas</span></div>
-                    <div class="stat"><b id="statProgress">0%</b><span>Progresso</span></div>
-                    <div class="stat"><b id="statDone">0</b><span>Concluídas</span></div>
-                    <div class="stat"><b id="statAvailable">4</b><span>Disponíveis</span></div>
-                    <div class="stat"><b id="statLocked">92</b><span>Bloqueadas</span></div>
+                    <div class="stat"><b id="statTotal">96</b><span>Total Tracks</span></div>
+                    <div class="stat"><b id="statProgress">0%</b><span>Progress</span></div>
+                    <div class="stat"><b id="statDone">0</b><span>Completed</span></div>
+                    <div class="stat"><b id="statAvailable">4</b><span>Available</span></div>
+                    <div class="stat"><b id="statLocked">92</b><span>Locked</span></div>
                 </div>
 
                 <div class="panel">
-                    <h3>Pistas</h3>
+                    <h3>Tracks</h3>
                     <div class="filter">
-                        <button class="active" data-filter="all">Todas</button>
-                        <button data-filter="available">Disponíveis</button>
-                        <button data-filter="done">Concluídas</button>
-                        <button data-filter="locked">Bloqueadas</button>
+                        <button class="active" data-filter="all">All</button>
+                        <button data-filter="available">Available</button>
+                        <button data-filter="done">Completed</button>
+                        <button data-filter="locked">Locked</button>
                     </div>
                     <div id="tracks"></div>
                 </div>
@@ -163,7 +220,7 @@
     </div>
 
     <script>
-        // === Lista fixa das 96 pistas do Mario Kart 8 Deluxe ===
+        // === Fixed list of the 96 Mario Kart 8 Deluxe tracks ===
         const TRACKS = [
             "Mario Kart Stadium", "Water Park", "Sweet Sweet Canyon", "Thwomp Ruins",
             "Mario Circuit", "Toad Harbor", "Twisted Mansion", "Shy Guy Falls",
@@ -293,16 +350,16 @@
 
         const TOTAL_TRACKS = 96;
         const GOAL_THRESHOLD = 77;
-        // Nome exato da location de vitória no .apworld (data/locations.json).
+        // Exact name of the victory location in the .apworld (data/locations.json).
         const GOAL_LOCATION_NAME = "Goal: Complete 80% of Tracks";
 
-        // IDs reais das locations vêm do DataPackage (location_name_to_id),
-        // NÃO da posição no array TRACKS — a ordem no .apworld é diferente.
+        // Real location IDs come from the DataPackage (location_name_to_id),
+        // NOT from the position in the TRACKS array — the order in the .apworld is different.
         function trackLocId(index) { return locationNameToId[TRACKS[index - 1]]; }
         function goalLocId() { return locationNameToId[GOAL_LOCATION_NAME]; }
         function isGoalDone() { const id = goalLocId(); return id != null && checkedLocations.has(id); }
 
-        // === Estado ===
+        // === State ===
         let ws = null;
         let connected = false;
         let mySlot = null;
@@ -342,22 +399,22 @@
             const host = elHost.value.trim();
             const port = elPort.value.trim();
             const slot = elSlot.value.trim();
-            if (!slot) { log('Preenche o nome do slot.', 'error'); return; }
+            if (!slot) { log('Please enter the slot name.', 'error'); return; }
 
             const url = `ws://${host}:${port}`;
-            log(`A ligar a ${url}...`);
+            log(`Connecting to ${url}...`);
             ws = new WebSocket(url);
 
-            ws.onopen = () => log('WebSocket aberto. A aguardar RoomInfo...');
+            ws.onopen = () => log('WebSocket open. Waiting for RoomInfo...');
             ws.onmessage = (ev) => { for (const p of JSON.parse(ev.data)) handlePacket(p); };
             ws.onclose = () => {
                 connected = false;
-                updateStatus('Desconectado', false);
+                updateStatus('Disconnected', false);
                 elBtnConnect.disabled = false;
                 elBtnDisconnect.disabled = true;
-                log('Ligação fechada.', 'error');
+                log('Connection closed.', 'error');
             };
-            ws.onerror = () => log('Erro de ligação.', 'error');
+            ws.onerror = () => log('Connection error.', 'error');
 
             window._pendingSlot = slot;
             window._pendingPassword = elPassword.value;
@@ -373,7 +430,7 @@
         function handlePacket(p) {
             switch (p.cmd) {
                 case 'RoomInfo':
-                    log(`Servidor: seed "${p.seed_name}"`);
+                    log(`Server: seed "${p.seed_name}"`);
                     send('GetDataPackage', { games: ['Manual_Mario Kart 8 Deluxe_ManualMK8D'] });
                     send('Connect', {
                         password: window._pendingPassword || '',
@@ -392,7 +449,7 @@
                     if (dp) {
                         itemIdToName = Object.fromEntries(Object.entries(dp.item_name_to_id || {}).map(([k,v]) => [v,k]));
                         locationNameToId = dp.location_name_to_id || {};
-                        log('DataPackage recebido.');
+                        log('DataPackage received.');
                     }
                     break;
 
@@ -401,24 +458,24 @@
                     mySlot = p.slot;
                     checkedLocations = new Set(p.checked_locations || []);
                     trackRequirements = p.slot_data?.track_requirements || {};
-                    log(`Conectado como slot ${p.slot}.`);
-                    updateStatus(`Conectado: ${p.slot}`, true);
+                    log(`Connected as slot ${p.slot}.`);
+                    updateStatus(`Connected: ${p.slot}`, true);
                     elBtnConnect.disabled = true;
                     elBtnDisconnect.disabled = false;
                     render();
                     break;
 
                 case 'ConnectionRefused':
-                    log(`Recusado: ${p.errors?.join(', ')}`, 'error');
+                    log(`Connection refused: ${p.errors?.join(', ')}`, 'error');
                     break;
 
                 case 'ReceivedItems':
                     for (const it of p.items || []) {
                         const name = itemIdToName[it.item] || `Item #${it.item}`;
                         ownedItems.add(name);
-                        log(`Recebeste: ${name}`, 'success');
+                        log(`Received: ${name}`, 'success');
                         if (name === '__Victory__') {
-                            log('🏆 VITÓRIA! Goal completo.', 'success');
+                            log('🏆 VICTORY! Goal complete.', 'success');
                             send('StatusUpdate', { status: 30 });
                         }
                     }
@@ -433,7 +490,7 @@
                     break;
 
                 case 'InvalidPacket':
-                    log(`Pacote inválido: ${p.text}`, 'error');
+                    log(`Invalid packet: ${p.text}`, 'error');
                     break;
             }
         }
@@ -481,7 +538,7 @@
 
             elInventory.innerHTML = '';
             if (ownedItems.size === 0) {
-                elInventory.innerHTML = '<span class="item">Nenhum item ainda</span>';
+                elInventory.innerHTML = '<span class="item">No items yet</span>';
             } else {
                 const sorted = Array.from(ownedItems).sort();
                 for (const name of sorted) {
@@ -500,49 +557,51 @@
                 if (currentFilter === 'available' && !available) continue;
                 if (currentFilter === 'locked' && (done || available)) continue;
 
-                const div = document.createElement('div');
-                div.className = 'track';
-                if (done) div.classList.add('done');
-                else if (available) div.classList.add('available');
+                const req = requiredUnlockFor(i);
+                const statusText = done ? 'Completed' : available ? 'Available' : `Requires ${req} unlock${req === 1 ? '' : 's'}`;
+
+                // The whole image is the button
+                const btn = document.createElement('button');
+                btn.className = 'tile ' + (done ? 'done' : available ? 'available' : 'locked');
+                btn.disabled = !available;                    // locked (and completed) not clickable
+                btn.title = `#${i} ${TRACKS[i-1]} — ${statusText}`;
+                btn.setAttribute('aria-label', `#${i} ${TRACKS[i-1]} (${statusText})`);
+                btn.onclick = () => checkLocation(i);
 
                 const img = document.createElement('img');
                 img.src = TRACK_IMAGES[i-1];
                 img.alt = TRACKS[i-1];
-                img.style.cssText = 'width:64px;height:64px;object-fit:contain;border-radius:6px;margin-right:.8rem;flex-shrink:0;';
+                img.loading = 'lazy';                          // 96 images: only loads what's visible
+                btn.appendChild(img);
 
-                const req = requiredUnlockFor(i);
-                const meta = document.createElement('div');
-                const statusText = done ? 'Concluída' : available ? 'Disponível' : `Requer ${req} unlock${req === 1 ? '' : 's'}`;
-                meta.innerHTML = `<b>#${i}</b> ${TRACKS[i-1]}<br><small>${statusText}</small>`;
+                const name = document.createElement('span');
+                name.className = 'name';
+                name.textContent = TRACKS[i-1];
+                btn.appendChild(name);
 
-                const left = document.createElement('div');
-                left.style.cssText = 'display:flex;align-items:center;';
-                left.appendChild(img);
-                left.appendChild(meta);
+                if (done || !available) {                      // ✓ for completed, ✕ for locked
+                    const badge = document.createElement('span');
+                    badge.className = 'badge';
+                    badge.textContent = done ? '✓' : '✕';
+                    btn.appendChild(badge);
+                }
 
-                const btn = document.createElement('button');
-                btn.textContent = done ? '✓' : 'Completei';
-                btn.disabled = !available;
-                btn.onclick = () => checkLocation(i);
-
-                div.appendChild(left);
-                div.appendChild(btn);
-                elTracks.appendChild(div);
+                elTracks.appendChild(btn);
             }
 
             const goalDone = isGoalDone();
             const goalAvailable = isGoalAvailable();
             if (currentFilter === 'all' || (currentFilter === 'available' && goalAvailable) || (currentFilter === 'done' && goalDone)) {
                 const div = document.createElement('div');
-                div.className = 'track goal';
+                div.className = 'goal-card';
                 if (goalDone) div.classList.add('done');
                 else if (goalAvailable) div.classList.add('available');
 
                 const info = document.createElement('div');
-                info.innerHTML = `<b>🏆 GOAL</b><br><small>${goalDone ? 'Completado!' : `Requer ${GOAL_THRESHOLD}/${TOTAL_TRACKS} pistas (${done} concluídas)`}</small>`;
+                info.innerHTML = `<b>🏆 GOAL</b><br><small>${goalDone ? 'Completed!' : `Requires ${GOAL_THRESHOLD}/${TOTAL_TRACKS} tracks (${done} completed)`}</small>`;
 
                 const btn = document.createElement('button');
-                btn.textContent = goalDone ? '✓' : 'Completar Goal';
+                btn.textContent = goalDone ? '✓' : 'Complete Goal';
                 btn.disabled = !goalAvailable;
                 btn.onclick = () => completeGoal();
 
@@ -553,22 +612,22 @@
         }
 
         function checkLocation(index) {
-            if (!connected) { log('Não estás conectado.', 'error'); return; }
+            if (!connected) { log('You are not connected.', 'error'); return; }
             const id = trackLocId(index);
-            if (id == null) { log(`ID da location não encontrado para "${TRACKS[index-1]}" (DataPackage em falta?).`, 'error'); return; }
+            if (id == null) { log(`Location ID not found for "${TRACKS[index-1]}" (missing DataPackage?).`, 'error'); return; }
             send('LocationChecks', { locations: [id] });
             checkedLocations.add(id);
-            log(`Pista #${index} ${TRACKS[index-1]} concluída.`);
+            log(`Track #${index} ${TRACKS[index-1]} completed.`);
             render();
         }
 
         function completeGoal() {
-            if (!connected) { log('Não estás conectado.', 'error'); return; }
+            if (!connected) { log('You are not connected.', 'error'); return; }
             if (completedTracksCount() < GOAL_THRESHOLD) {
-                log(`Precisas de ${GOAL_THRESHOLD} pistas para o goal.`, 'error');
+                log(`You need ${GOAL_THRESHOLD} tracks for the goal.`, 'error');
                 return;
             }
-            // Check todas as pistas restantes + a location de vitória (IDs reais).
+            // Check all remaining tracks + the victory location (real IDs).
             const ids = [];
             for (let i = 1; i <= TOTAL_TRACKS; i++) {
                 if (!isDone(i)) { const id = trackLocId(i); if (id != null) ids.push(id); }
@@ -579,10 +638,10 @@
                 send('LocationChecks', { locations: ids });
                 for (const id of ids) checkedLocations.add(id);
             }
-            // Marca o slot como goal-complete no servidor (ClientStatus.CLIENT_GOAL = 30).
-            // Sem isto o servidor não considera o jogo terminado nem faz o release automático.
+            // Mark the slot as goal-complete on the server (ClientStatus.CLIENT_GOAL = 30).
+            // Without this the server doesn't consider the game finished and won't auto-release.
             send('StatusUpdate', { status: 30 });
-            log(`🏆 GOAL! ${ids.length ? ids.length - (gid != null ? 1 : 0) : 0} pistas restantes e o goal foram completados. Todos os itens serão libertados.`, 'success');
+            log(`🏆 GOAL! ${ids.length ? ids.length - (gid != null ? 1 : 0) : 0} remaining tracks and the goal were completed. All items will be released.`, 'success');
             render();
         }
 
