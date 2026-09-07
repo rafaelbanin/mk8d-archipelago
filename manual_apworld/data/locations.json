@@ -4,10 +4,7 @@
     "category": [
       "Tracks"
     ],
-    "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 01"
-    ]
+    "region": "Grand Prix"
   },
   {
     "name": "Amsterdam Drift",
@@ -15,9 +12,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 02"
-    ],
     "requires": "|Track Unlock 01|"
   },
   {
@@ -26,9 +20,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 03"
-    ],
     "requires": "|Track Unlock 02|"
   },
   {
@@ -37,9 +28,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 04"
-    ],
     "requires": "|Track Unlock 03|"
   },
   {
@@ -48,9 +36,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 05"
-    ],
     "requires": "|Track Unlock 04|"
   },
   {
@@ -59,9 +44,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 06"
-    ],
     "requires": "|Track Unlock 05|"
   },
   {
@@ -70,9 +52,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 07"
-    ],
     "requires": "|Track Unlock 06|"
   },
   {
@@ -81,9 +60,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 08"
-    ],
     "requires": "|Track Unlock 07|"
   },
   {
@@ -92,9 +68,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 09"
-    ],
     "requires": "|Track Unlock 08|"
   },
   {
@@ -103,9 +76,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 10"
-    ],
     "requires": "|Track Unlock 09|"
   },
   {
@@ -114,9 +84,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 11"
-    ],
     "requires": "|Track Unlock 10|"
   },
   {
@@ -125,9 +92,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 12"
-    ],
     "requires": "|Track Unlock 11|"
   },
   {
@@ -136,9 +100,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 13"
-    ],
     "requires": "|Track Unlock 12|"
   },
   {
@@ -147,9 +108,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 14"
-    ],
     "requires": "|Track Unlock 13|"
   },
   {
@@ -158,9 +116,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 15"
-    ],
     "requires": "|Track Unlock 14|"
   },
   {
@@ -169,9 +124,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 16"
-    ],
     "requires": "|Track Unlock 15|"
   },
   {
@@ -180,9 +132,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 17"
-    ],
     "requires": "|Track Unlock 16|"
   },
   {
@@ -191,9 +140,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 18"
-    ],
     "requires": "|Track Unlock 17|"
   },
   {
@@ -202,9 +148,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 19"
-    ],
     "requires": "|Track Unlock 18|"
   },
   {
@@ -213,9 +156,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 20"
-    ],
     "requires": "|Track Unlock 19|"
   },
   {
@@ -224,9 +164,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 21"
-    ],
     "requires": "|Track Unlock 20|"
   },
   {
@@ -235,9 +172,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 22"
-    ],
     "requires": "|Track Unlock 21|"
   },
   {
@@ -246,9 +180,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 23"
-    ],
     "requires": "|Track Unlock 22|"
   },
   {
@@ -257,9 +188,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 24"
-    ],
     "requires": "|Track Unlock 23|"
   },
   {
@@ -268,9 +196,7 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 25"
-    ]
+    "requires": "|Track Unlock 24|"
   },
   {
     "name": "Yoshi Valley",
@@ -278,9 +204,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 26"
-    ],
     "requires": "|Track Unlock 25|"
   },
   {
@@ -289,9 +212,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 27"
-    ],
     "requires": "|Track Unlock 26|"
   },
   {
@@ -300,9 +220,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 28"
-    ],
     "requires": "|Track Unlock 27|"
   },
   {
@@ -311,9 +228,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 29"
-    ],
     "requires": "|Track Unlock 28|"
   },
   {
@@ -322,9 +236,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 30"
-    ],
     "requires": "|Track Unlock 29|"
   },
   {
@@ -333,9 +244,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 31"
-    ],
     "requires": "|Track Unlock 30|"
   },
   {
@@ -344,9 +252,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 32"
-    ],
     "requires": "|Track Unlock 31|"
   },
   {
@@ -355,9 +260,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 33"
-    ],
     "requires": "|Track Unlock 32|"
   },
   {
@@ -366,9 +268,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 34"
-    ],
     "requires": "|Track Unlock 33|"
   },
   {
@@ -377,9 +276,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 35"
-    ],
     "requires": "|Track Unlock 34|"
   },
   {
@@ -388,9 +284,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 36"
-    ],
     "requires": "|Track Unlock 35|"
   },
   {
@@ -399,9 +292,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 37"
-    ],
     "requires": "|Track Unlock 36|"
   },
   {
@@ -410,9 +300,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 38"
-    ],
     "requires": "|Track Unlock 37|"
   },
   {
@@ -421,9 +308,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 39"
-    ],
     "requires": "|Track Unlock 38|"
   },
   {
@@ -432,9 +316,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 40"
-    ],
     "requires": "|Track Unlock 39|"
   },
   {
@@ -443,9 +324,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 41"
-    ],
     "requires": "|Track Unlock 40|"
   },
   {
@@ -454,9 +332,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 42"
-    ],
     "requires": "|Track Unlock 41|"
   },
   {
@@ -465,9 +340,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 43"
-    ],
     "requires": "|Track Unlock 42|"
   },
   {
@@ -476,9 +348,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 44"
-    ],
     "requires": "|Track Unlock 43|"
   },
   {
@@ -487,9 +356,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 45"
-    ],
     "requires": "|Track Unlock 44|"
   },
   {
@@ -498,9 +364,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 46"
-    ],
     "requires": "|Track Unlock 45|"
   },
   {
@@ -509,9 +372,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 47"
-    ],
     "requires": "|Track Unlock 46|"
   },
   {
@@ -520,9 +380,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 48"
-    ],
     "requires": "|Track Unlock 47|"
   },
   {
@@ -531,9 +388,7 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 49"
-    ]
+    "requires": "|Track Unlock 48|"
   },
   {
     "name": "Riverside Park",
@@ -541,9 +396,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 50"
-    ],
     "requires": "|Track Unlock 49|"
   },
   {
@@ -552,9 +404,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 51"
-    ],
     "requires": "|Track Unlock 50|"
   },
   {
@@ -563,9 +412,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 52"
-    ],
     "requires": "|Track Unlock 51|"
   },
   {
@@ -574,9 +420,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 53"
-    ],
     "requires": "|Track Unlock 52|"
   },
   {
@@ -585,9 +428,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 54"
-    ],
     "requires": "|Track Unlock 53|"
   },
   {
@@ -596,9 +436,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 55"
-    ],
     "requires": "|Track Unlock 54|"
   },
   {
@@ -607,9 +444,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 56"
-    ],
     "requires": "|Track Unlock 55|"
   },
   {
@@ -618,9 +452,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 57"
-    ],
     "requires": "|Track Unlock 56|"
   },
   {
@@ -629,9 +460,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 58"
-    ],
     "requires": "|Track Unlock 57|"
   },
   {
@@ -640,9 +468,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 59"
-    ],
     "requires": "|Track Unlock 58|"
   },
   {
@@ -651,9 +476,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 60"
-    ],
     "requires": "|Track Unlock 59|"
   },
   {
@@ -662,9 +484,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 61"
-    ],
     "requires": "|Track Unlock 60|"
   },
   {
@@ -673,9 +492,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 62"
-    ],
     "requires": "|Track Unlock 61|"
   },
   {
@@ -684,9 +500,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 63"
-    ],
     "requires": "|Track Unlock 62|"
   },
   {
@@ -695,9 +508,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 64"
-    ],
     "requires": "|Track Unlock 63|"
   },
   {
@@ -706,9 +516,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 65"
-    ],
     "requires": "|Track Unlock 64|"
   },
   {
@@ -717,9 +524,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 66"
-    ],
     "requires": "|Track Unlock 65|"
   },
   {
@@ -728,9 +532,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 67"
-    ],
     "requires": "|Track Unlock 66|"
   },
   {
@@ -739,9 +540,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 68"
-    ],
     "requires": "|Track Unlock 67|"
   },
   {
@@ -750,9 +548,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 69"
-    ],
     "requires": "|Track Unlock 68|"
   },
   {
@@ -761,9 +556,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 70"
-    ],
     "requires": "|Track Unlock 69|"
   },
   {
@@ -772,9 +564,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 71"
-    ],
     "requires": "|Track Unlock 70|"
   },
   {
@@ -783,9 +572,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 72"
-    ],
     "requires": "|Track Unlock 71|"
   },
   {
@@ -794,9 +580,7 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 73"
-    ]
+    "requires": "|Track Unlock 72|"
   },
   {
     "name": "Rosalina's Ice World",
@@ -804,9 +588,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 74"
-    ],
     "requires": "|Track Unlock 73|"
   },
   {
@@ -815,9 +596,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 75"
-    ],
     "requires": "|Track Unlock 74|"
   },
   {
@@ -826,9 +604,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 76"
-    ],
     "requires": "|Track Unlock 75|"
   },
   {
@@ -837,9 +612,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 77"
-    ],
     "requires": "|Track Unlock 76|"
   },
   {
@@ -848,9 +620,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 78"
-    ],
     "requires": "|Track Unlock 77|"
   },
   {
@@ -859,9 +628,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 79"
-    ],
     "requires": "|Track Unlock 78|"
   },
   {
@@ -870,9 +636,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 80"
-    ],
     "requires": "|Track Unlock 79|"
   },
   {
@@ -881,9 +644,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 81"
-    ],
     "requires": "|Track Unlock 80|"
   },
   {
@@ -892,9 +652,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 82"
-    ],
     "requires": "|Track Unlock 81|"
   },
   {
@@ -903,9 +660,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 83"
-    ],
     "requires": "|Track Unlock 82|"
   },
   {
@@ -914,9 +668,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 84"
-    ],
     "requires": "|Track Unlock 83|"
   },
   {
@@ -925,9 +676,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 85"
-    ],
     "requires": "|Track Unlock 84|"
   },
   {
@@ -936,9 +684,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 86"
-    ],
     "requires": "|Track Unlock 85|"
   },
   {
@@ -947,9 +692,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 87"
-    ],
     "requires": "|Track Unlock 86|"
   },
   {
@@ -958,9 +700,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 88"
-    ],
     "requires": "|Track Unlock 87|"
   },
   {
@@ -969,9 +708,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 89"
-    ],
     "requires": "|Track Unlock 88|"
   },
   {
@@ -980,9 +716,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 90"
-    ],
     "requires": "|Track Unlock 89|"
   },
   {
@@ -991,9 +724,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 91"
-    ],
     "requires": "|Track Unlock 90|"
   },
   {
@@ -1002,9 +732,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 92"
-    ],
     "requires": "|Track Unlock 91|"
   },
   {
@@ -1013,9 +740,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 93"
-    ],
     "requires": "|Track Unlock 92|"
   },
   {
@@ -1024,9 +748,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 94"
-    ],
     "requires": "|Track Unlock 93|"
   },
   {
@@ -1035,9 +756,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 95"
-    ],
     "requires": "|Track Unlock 94|"
   },
   {
@@ -1046,9 +764,6 @@
       "Tracks"
     ],
     "region": "Grand Prix",
-    "place_item": [
-      "Track Unlock 96"
-    ],
     "requires": "|Track Unlock 95|"
   },
   {
